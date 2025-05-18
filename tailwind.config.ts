@@ -22,6 +22,7 @@ export default {
 			fontFamily: {
 				sans: ['DM Sans', 'sans-serif'],
 				display: ['Playfair Display', 'serif'],
+				arabic: ['Cairo', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

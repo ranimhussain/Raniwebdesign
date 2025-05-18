@@ -1,43 +1,62 @@
 
 import { Code, Search, Palette } from "lucide-react";
-
-const services = [
-  {
-    id: 1,
-    title: "Web Design & Development",
-    description:
-      "We create stunning, responsive websites that combine visual appeal with seamless functionality to deliver exceptional user experiences.",
-    icon: Code,
-    features: ["Custom Website Design", "Responsive Development", "CMS Integration", "E-commerce Solutions"],
-  },
-  {
-    id: 2,
-    title: "SEO Optimization",
-    description:
-      "Boost your online visibility and drive organic traffic with our data-driven SEO strategies tailored to your business goals.",
-    icon: Search,
-    features: ["Keyword Research", "On-page Optimization", "Technical SEO", "Performance Analytics"],
-  },
-  {
-    id: 3,
-    title: "Visual Identity Design",
-    description:
-      "We craft distinctive brand identities that capture your essence and create meaningful connections with your audience.",
-    icon: Palette,
-    features: ["Logo Design", "Brand Guidelines", "Marketing Collateral", "Brand Strategy"],
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 const Services = () => {
+  const { language, t } = useLanguage();
+  
+  const services = [
+    {
+      id: 1,
+      titleKey: "services.web.title",
+      descriptionKey: "services.web.description",
+      icon: Code,
+      features: [
+        "services.web.feature1",
+        "services.web.feature2",
+        "services.web.feature3",
+        "services.web.feature4"
+      ],
+    },
+    {
+      id: 2,
+      titleKey: "services.seo.title",
+      descriptionKey: "services.seo.description",
+      icon: Search,
+      features: [
+        "services.seo.feature1",
+        "services.seo.feature2",
+        "services.seo.feature3",
+        "services.seo.feature4"
+      ],
+    },
+    {
+      id: 3,
+      titleKey: "services.visual.title",
+      descriptionKey: "services.visual.description",
+      icon: Palette,
+      features: [
+        "services.visual.feature1",
+        "services.visual.feature2",
+        "services.visual.feature3",
+        "services.visual.feature4"
+      ],
+    },
+  ];
+
   return (
-    <section id="services" className="py-20 bg-gray-50">
+    <section 
+      id="services" 
+      className="py-20 bg-gray-50"
+      dir={language === "ar" ? "rtl" : "ltr"}
+    >
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 mb-4">
-            Our Services
+            {t("services.title")}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We offer comprehensive digital solutions to help your business stand out in today's competitive landscape.
+            {t("services.subtitle")}
           </p>
         </div>
 
@@ -52,16 +71,16 @@ const Services = () => {
                   <service.icon className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-2xl font-display font-bold text-gray-900 mb-3">
-                  {service.title}
+                  {t(service.titleKey)}
                 </h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
+                <p className="text-gray-600 mb-6">{t(service.descriptionKey)}</p>
               </div>
               <div className="mt-auto">
                 <ul className="space-y-2">
                   {service.features.map((feature, index) => (
                     <li key={index} className="flex items-center">
-                      <span className="h-2 w-2 bg-primary rounded-full mr-3"></span>
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="h-2 w-2 bg-primary rounded-full mr-3 rtl:mr-0 rtl:ml-3"></span>
+                      <span className="text-gray-700">{t(feature)}</span>
                     </li>
                   ))}
                 </ul>
